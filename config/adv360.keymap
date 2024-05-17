@@ -45,8 +45,8 @@
         compatible = "zmk,behavior-hold-tap";
         label = "HOMEROW_MODS";
         #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        quick_tap_ms = <175>;
+        tapping-term-ms = <220>;
+        quick_tap_ms = <250>;
         flavor = "tap-preferred";
         bindings = <&mo>, <&kp>;
     };
@@ -55,8 +55,8 @@
         compatible = "zmk,behavior-hold-tap";
         label = "HOMEROW_MODS";
         #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        quick_tap_ms = <175>;
+        tapping-term-ms = <220>;
+        quick_tap_ms = <250>;
         flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
         hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
@@ -66,8 +66,8 @@
         compatible = "zmk,behavior-hold-tap";
         label = "HOMEROW_MODS";
         #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        quick_tap_ms = <175>;
+        tapping-term-ms = <220>;
+        quick_tap_ms = <250>;
         flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
         hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
@@ -78,8 +78,8 @@
         compatible = "zmk,behavior-hold-tap";
         label = "HOMEROW_LAYERS_L";
         #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        quick-tap-ms = <175>;
+        tapping-term-ms = <220>;
+        quick-tap-ms = <250>;
         flavor = "tap-preferred";
         bindings = <&mo>, <&kp>;
         hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
@@ -89,8 +89,8 @@
         compatible = "zmk,behavior-hold-tap";
         label = "HOMEROW_LAYERS_R";
         #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        quick-tap-ms = <175>;
+        tapping-term-ms = <220>;
+        quick-tap-ms = <250>;
         flavor = "tap-preferred";
         bindings = <&mo>, <&kp>;
         hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
