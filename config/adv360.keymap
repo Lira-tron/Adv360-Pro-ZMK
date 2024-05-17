@@ -15,6 +15,24 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
+#define KEYS_LEFT 0 1 2 3 4 5 6 \
+                  14 15 16 17 18 19 20 \
+                  28 29 30 31 32 33 34 \
+                  46 47 48 49 50 51 \
+                  66 67 68 69 70
+
+#define KEYS_RIGHT 7 8 9 10 11 12 13 \
+                   21 22 23 24 25 26 27 \
+                   39 40 41 42 43 44 45 \
+                   60 61 62 63 64 65 \
+                   77 78 79 80 81
+
+#define THUMBS_LEFT 35 36 54 71 72 73
+
+#define THUMBS_RIGHT 37 38 57 74 75 76
+
+#define THUMBS THUMBS_LEFT THUMBS_RIGHT
+
 / {
   behaviors {
     #include "macros.dtsi"
@@ -29,7 +47,48 @@
         flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
     };
+
+    hml: homerow_mods_left {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        quick_tap_ms = <175>;
+        flavor = "tap-preferred";
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = <KEYS_RIGHT THUMBS>
+    };
+
+    hmr: homerow_mods_right {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        quick_tap_ms = <175>;
+        flavor = "tap-preferred";
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
+
+    };
+
+
   };
+
+    // Home row mods
+    #define _R_SYM &hml MO(1) R
+    #define _S_SYM &hm MO(2) S
+    #define _T_SYM &hml MO(3) T
+    #define _W_SHF &hml LSHFT W
+    #define _F_CTL &hml LCTRL F  // Control on index down
+    #define _P_ALT &hml LALT P
+
+    #define _N_SYM &hmr MO(3) N
+    #define _E_SYM &hm  MO(2) E
+    #define _I_SYM &hmr MO(1) I
+    #define _Y_SHF &hmr LSHFT Y
+    #define _U_CTL &hmr LCTRL U  // Control on index down
+    #define _L_ALT &hmr LALT L
+    #define _M_CMD &hmr LEFT_COMMAND M
 
     keymap {
         compatible = "zmk,keymap";
@@ -37,11 +96,11 @@
 
         default_layer {
             bindings = <
-        &kp ESC  &kp NUMBER_1  &kp NUMBER_2    &kp N3     &kp N4  &kp N5                            &tog 1                                                                                           &mo 3  &kp N6  &kp N7     &kp N8   &kp N9         &kp N0  &kp MINUS
-        &kp TAB         &kp Q         &kp W     &kp F      &kp P   &kp B                             &none                                                                                           &none   &kp J   &kp L      &kp U    &kp Y  &kp SEMICOLON   &kp BSLH
- &kp LEFT_SHIFT         &kp A         &kp R     &kp S      &kp T   &kp G                             &none             &kp LCTRL  &kp LALT                   &kp LGUI      &kp RCTRL                 &none   &kp M   &kp N      &kp E    &kp I          &kp O    &kp SQT
-       &kp CAPS         &kp Z         &kp X     &kp C      &kp D   &kp V                                                          &kp HOME                  &kp PG_UP                                        &kp K   &kp H  &kp COMMA  &kp DOT       &kp FSLH  &kp RSHFT
-          &mo 2         &none         &none  &kp LEFT  &kp RIGHT                    &mt LEFT_CONTROL ENTER  &mt LEFT_COMMAND ESC   &kp END                  &kp PG_DN  &kp BACKSPACE  &mt LEFT_SHIFT SPACE          &kp UP   &kp DOWN    &none          &none      &mo 2
+        &kp ESC     &kp N1  &kp N2    &kp N3     &kp N4    &kp N5    &none                                                                                                          &mo 4   &kp N6     &kp N7     &kp N8     &kp N9    &kp N0          &kp MINUS
+        &kp TAB     &kp Q   _W_SHF    _F_CTL     _P_ALT    &kp B     &none                                                                                                          &none   &kp J      _L_ALT     _U_CTL     _Y_SHF    &kp SEMICOLON   &kp BSLH
+        &kp LSHFT   &kp A   _R_SYM    _S_SYM     _T_SYM    &kp G     &none                    &kp LCTRL              &kp LALT           &kp LGUI    &kp RCTRL                       &none   _M_CMD     _N_SYM     _E_SYM     _I_SYM    &kp O           &kp SQT
+        &kp CAPS    &kp Z   &kp X     &kp C      &kp D     &kp V                                                     &kp HOME           &kp PG_UP                                           &kp K      &kp H      &kp COMMA  &kp DOT   &kp FSLH        &kp RSHFT
+        &none       &none   &none     &kp LEFT   &kp RIGHT                   &mt LCTRL ENTER  &mt LEFT_COMMAND ESC   &kp END            &kp PG_DN   &kp BACKSPACE  &mt LSHFT SPACE                     &kp UP     &kp DOWN   &none     &none           &none
             >;
         };
 
@@ -58,7 +117,7 @@
         layer_Arrow {
             bindings = <
  &trans         &kp F1             &kp F2            &kp F3                &kp F4            &kp F5            &trans                                                  &trans       &kp F6           &kp F7          &kp F8           &kp F9  &kp F10  &trans
- &trans     &kp K_MUTE  &kp LG(LS(SPACE))            &trans                &trans      &kp CAPSLOCK            &trans                                                  &trans  &kp PAGE_UP         &kp HOME    &kp UP_ARROW          &kp END  &kp F11  &trans
+ &trans     &kp K_MUTE  &kp LG(LS(SPACE))            &LCTRL                &kp LALT      &kp CAPSLOCK            &trans                                                  &trans  &kp PAGE_UP         &kp HOME    &kp UP_ARROW          &kp END  &kp F11  &trans
  &trans  &kp LC(LG(V))  &kp LG(BACKSLASH)            &trans  &kp LS(LEFT_COMMAND)  &kp LS(LEFT_ALT)            &trans  &trans  &trans                  &trans  &trans  &trans  &kp PAGE_UP   &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp F12  &trans
  &trans     &kp K_PREV         &kp K_NEXT  &kp K_PLAY_PAUSE          &kp K_VOL_DN      &kp K_VOL_UP                            &trans                  &trans                        &none  &kp LC(LS(TAB))     &kp LC(TAB)           &trans    &none   &none
  &trans         &trans             &trans            &trans                &trans                              &trans  &trans  &trans                  &trans  &trans  &trans                        &trans          &trans           &trans   &trans  &trans
@@ -74,6 +133,16 @@
  &trans       &trans           &trans      &trans        &trans                    &trans  &trans  &trans                  &trans  &trans  &trans                        &trans                 &trans             &trans    &trans  &trans
             >;
         };
+
+        layer_Mod {
+            bindings = <
+        &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none                                                                     &trans                 &none        &none        &none        &none &none &none
+        &none &none        &none        &none        &none        &none        &bootloader                                                               &bootloader            &none        &none        &none        &none &none &none
+        &none &none        &none        &none        &none        &none        &none                   &none &none &bt BT_CLR &none                      &rgb_ug RGB_MEFS_CMD 5 &none        &none        &none        &none &none &none
+        &none &none        &none        &none        &macro_ver   &none                                      &none &none                                                        &none        &none        &none        &none &none &none
+        &none &none        &none        &none        &none                                       &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG                                     &bl BL_INC   &bl BL_DEC   &none &none &none
+            >;
+      };
 
     };
 };
