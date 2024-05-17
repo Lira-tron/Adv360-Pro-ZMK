@@ -45,7 +45,7 @@
         tapping-term-ms = <200>;
         quick_tap_ms = <175>;
         flavor = "tap-preferred";
-        bindings = <&kp>, <&kp>;
+        bindings = <&mo>, <&kp>;
     };
 
     hml: homerow_mods_left {
@@ -71,20 +71,42 @@
 
     };
 
+    hll: homerow_layers_left {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_LAYERS_L";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        quick-tap-ms = <175>;
+        flavor = "tap-preferred";
+        bindings = <&mo>, <&kp>;
+        hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
+
+    };
+    hlr: homerow_layers_right {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_LAYERS_R";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        quick-tap-ms = <175>;
+        flavor = "tap-preferred";
+        bindings = <&mo>, <&kp>;
+        hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
+
+    };
 
   };
 
     // Home row mods
-    #define _R_SYM &hml MO(1) R
-    #define _S_SYM &hm MO(2) S
-    #define _T_SYM &hml MO(3) T
+    #define _R_SYM &hll 1 R
+    #define _S_SYM &hm  2 S
+    #define _T_SYM &hll 3 T
     #define _W_SHF &hml LSHFT W
     #define _F_CTL &hml LCTRL F  // Control on index down
     #define _P_ALT &hml LALT P
 
-    #define _N_SYM &hmr MO(3) N
-    #define _E_SYM &hm  MO(2) E
-    #define _I_SYM &hmr MO(1) I
+    #define _N_SYM &hlr 3 N
+    #define _E_SYM &hm  2 E
+    #define _I_SYM &hlr 1 I
     #define _Y_SHF &hmr LSHFT Y
     #define _U_CTL &hmr LCTRL U  // Control on index down
     #define _L_ALT &hmr LALT L
