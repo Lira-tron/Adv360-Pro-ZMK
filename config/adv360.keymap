@@ -64,7 +64,7 @@
         quick_tap_ms = <250>;
         flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
+        // hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
     };
 
     hmr: homerow_mods_right {
@@ -75,7 +75,7 @@
         quick_tap_ms = <250>;
         flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
+        // hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
 
     };
 
@@ -87,7 +87,7 @@
         quick-tap-ms = <250>;
         flavor = "tap-preferred";
         bindings = <&mo>, <&kp>;
-        hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
+        // hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
 
     };
     hlr: homerow_layers_right {
@@ -98,7 +98,7 @@
         quick-tap-ms = <250>;
         flavor = "tap-preferred";
         bindings = <&mo>, <&kp>;
-        hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
+        // hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
 
     };
 
